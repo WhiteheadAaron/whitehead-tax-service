@@ -9,7 +9,7 @@ body {
 }
 
 .content {
-    max-width: 1400px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -21,19 +21,45 @@ body {
 #nav-bar {
     width: 100%;
     background-color: white;
+    border-bottom: solid lightgray 1px;
     padding: 20px;
 }
 
 .nav {
     display: grid;
-    width: 100%;
-    height: 100%;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: auto;
+    grid-gap: 3em;
+    align-items: center;
+    text-align: center;
+    padding-right: 10px;
+}
+
+.nav h1 {
+    grid-column: 1 / 3;
 }
 
 h1 {
     display: inline-block;
 }
 
-button {
-    
+.nav-button {
+    border: none;
+    background-color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all .5s;
+    height: 50%;
+}
+
+.nav-button:hover {
+    background-color: rgb(232, 242, 248);
+    border: 1px solid lightgray;
+    transform: scale(1.2);
+}
+
+.stuff {
+    width: 100%;
+    background-color: white;
+    height: 1000px;
 }
