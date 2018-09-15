@@ -2,7 +2,14 @@
 
 const eventHandlers = (function() {
 
+  function aboutMeHTML() {
+    const output = '<h2>HELLO THERE</h2>';
+    return output;
+  }
 
+  function render() {
+    $('.stuff').html('<h2>HELLO THERE</h2>');
+  }
 
 
   function handleAboutMeClicked() {
@@ -14,13 +21,6 @@ const eventHandlers = (function() {
 
   function handleProductsAndServicesClicked() {
     $('#products').on('click', event => {
-      event.preventDefault();
-      
-    });
-  }
-  
-  function handleMakeAnAppointmentClicked() {
-    $('#appointment').on('click', event => {
       event.preventDefault();
       
     });
@@ -38,12 +38,11 @@ const eventHandlers = (function() {
   function handleClicks() {
     handleAboutMeClicked();
     handleProductsAndServicesClicked();
-    handleMakeAnAppointmentClicked();
     handleContactMeClicked();
   }
 
   return {
     handleClicks,
-    // render
+    render
   };
 }());
