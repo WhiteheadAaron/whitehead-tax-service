@@ -52,6 +52,10 @@ h1 {
     height: 50%;
 }
 
+.nav-button:focus {
+    outline-width: 0;
+}
+
 .nav-button:hover {
     background-color: rgb(232, 242, 248);
     border: 1px solid lightgray;
