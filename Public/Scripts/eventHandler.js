@@ -5,11 +5,8 @@
 const eventHandlers = (function() {
 
   function aboutMeHTML() {
-    let output = '';
-
-    if (store.html === 'aboutMe') {
-      output =
-       `<div class="aboutMeGrid">
+   
+    return  `<div class="aboutMeGrid">
        <div class = "aboutHeader">
         <h2>Randy Whitehead</h2>
             <h3>CPA</h3>
@@ -18,6 +15,11 @@ const eventHandlers = (function() {
     <div class="aboutInfo">
         <p>My name is Randy, and I have been running my own tax business for people in the greater Madison area for 10? years. My full time day job is working for the City of Madison as a Principal Accountant. I have been working in this role since March of 2004.</p>
     </div>
+    </div>`;
+  }
+
+  function qualificationsHTML() {
+    return `<div class="qualificationsGrid">
     <div class="aboutQualificationsHeader">
         <h2>Qualifications</h2>
     </div>
@@ -30,73 +32,90 @@ const eventHandlers = (function() {
             <p>Some information about your college</p>
     </div>
     </div>`;
-    }
-    if (store.html === 'contactMe') {
-      output = `<div class="contactGrid">
-      <div class="contactHeader">
-          <h2>Contact Me</h2>
-      </div>
-      <div class="contactInfo">
-          <p>Give me a call or send me an e-mail, and we can get to scheduling your tax appointment! Feel free to let me know which product or service you're interested in. If you don't quite know for sure, no problem! I can get more details from you, and we can discuss what your best option is.</p>
-      </div>
-      <div class="contactPhoneImg">
-          <img src="../Images/phone.jpg" class="phoneImg">
-      </div>
-      <div class="contactEmailImg">
-          <img src="../Images/email.jpg" class="emailImg">
-      </div>
-      <div class="contactPhone">
-          <p>(608) 333-1090</p>
-      </div>
-      <div class="contactEmail">
-          <p>WhiteheadRandy@hotmail.com</p>
-      </div>
+  }
+
+  function productsHTML() {
+    return `<div class="productsGrid">
+    <div class="productsHeader">
+    <h2>Products & Services</h2>
+  </div>
+  <div class="productsPersonal">
+    <h3>Personal Tax Returns</h3>
+        <p>Some information about your personal tax returns</p>
+  </div>
+  <div class="productsBusiness">
+    <h3>Small Business Tax Returns</h3>
+        <p>Some information about your small business tax returns</p>
+  </div>
   </div>`;
-    }
-    if (store.html === 'productsAndServices') {
-      output = '<h2>Coming Soon!</h2>';
-    }
-    return output;
+  }
+
+  function contactHTML() {
+    return  `<div class="contactGrid">
+    <div class="contactHeader">
+        <h2>Contact Me</h2>
+    </div>
+    <div class="contactInfo">
+        <p>Give me a call or send me an e-mail, and we can get to scheduling your tax appointment! Feel free to let me know which product or service you're interested in. If you don't quite know for sure, no problem! I can get more details from you, and we can discuss what your best option is.</p>
+    </div>
+    <div class="contactPhoneImg">
+        <img src="../Images/phone.jpg" class="phoneImg">
+    </div>
+    <div class="contactEmailImg">
+        <img src="../Images/email.jpg" class="emailImg">
+    </div>
+    <div class="contactPhone">
+        <p>(608) 333-1090</p>
+    </div>
+    <div class="contactEmail">
+        <p>WhiteheadRandy@hotmail.com</p>
+    </div>
+    </div>`;
   }
 
   function render() {
-    let pageStuff = aboutMeHTML();
-    console.log(pageStuff);
+    let aboutMeStuff = aboutMeHTML();
+    let qualificationsStuff = qualificationsHTML();
+    let productsStuff = productsHTML();
+    let contactStuff = contactHTML();
 
-    $('.stuff').html(pageStuff);
+    $('#aboutMeStuff').html(aboutMeStuff);
+    $('#qualificationsStuff').html(qualificationsStuff);
+    $('#productsStuff').html(productsStuff);
+    $('#contactStuff').html(contactStuff);
   }
 
 
   function handleAboutMeClicked() {
     $('#about').on('click', event => {
       event.preventDefault();
-      store.html = 'aboutMe';
+      window.location.href = '#aboutMeStuff';
       render();
     });
   }
 
-  function handleProductsAndServicesClicked() {
-    $('#products').on('click', event => {
-      event.preventDefault();
-      store.html = 'productsAndServices';
-      render();
-    });
-  }
+  // function handleProductsAndServicesClicked() {
+  //   $('#products').on('click', event => {
+  //     event.preventDefault();
+  //     // store.html = 'productsAndServices';
+  //     render();
+  //   });
+  // }
 
-  function handleContactMeClicked() {
-    $('#contact').on('click', event => {
-      event.preventDefault();
-      store.html = 'contactMe';
-      render();
-    });
-  }
+  // function handleContactMeClicked() {
+  //   $('#contact').on('click', event => {
+  //     event.preventDefault();
+  //     // store.html = 'contactMe';
+  //     render();
+  //   });
+  // }
   
   
   
   function handleClicks() {
     handleAboutMeClicked();
-    handleProductsAndServicesClicked();
-    handleContactMeClicked();
+    // handleProductsAndServicesClicked();
+    // handleContactMeClicked();
   }
 
   return {
