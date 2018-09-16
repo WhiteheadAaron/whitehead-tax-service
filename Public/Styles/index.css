@@ -184,4 +184,5 @@ h1 {
 .contactEmail {
     grid-column: 5 / 8;
     grid-row: 4 / 6;
+    text-align: center;
 }
