@@ -98,17 +98,6 @@ h1 {
     grid-row: 1 / 2;
 }
 
-.aboutQualifications {
-    grid-column: 5 / 7;
-    grid-row: 3 / 4;
-}
-
-.aboutQualifications ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
 .aboutInfo {
     grid-column: 5 / 9;
     grid-row: 3 / 4;
