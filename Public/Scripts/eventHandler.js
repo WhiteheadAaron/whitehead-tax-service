@@ -1,6 +1,6 @@
 'use strict';
 
-/* global store */
+/* global store $ */
 
 const eventHandlers = (function() {
 
@@ -89,7 +89,7 @@ const eventHandlers = (function() {
   function handleAboutMeClicked() {
     $('#about').on('click', event => {
       event.preventDefault();
-      window.location.href = '#aboutMeStuff';
+      document.location.hash = '#aboutMeStuff';
       render();
     });
   }
