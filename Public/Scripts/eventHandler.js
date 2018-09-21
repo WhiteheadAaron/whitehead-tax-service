@@ -105,27 +105,69 @@ const eventHandlers = (function() {
     return html;
   }
 
+  function aboutNav() {
+    let nav = `<div class="nav">
+    <h1 class="header">Whitehead Tax Service</h1>
+    <button id="about" class="curOn">About Me</button>
+    <button id="products" class="nav-button">Services</button>
+    <button id="contact" class="nav-button">Contact Me</button>
+    <button id="results" class="nav-button">(Results)</button>
+</div>`;
+    return nav;
+  }
+
+  function servicesNav() {
+    let nav = `<div class="nav">
+    <h1 class="header">Whitehead Tax Service</h1>
+    <button id="about" class="nav-button">About Me</button>
+    <button id="products" class="curOn">Services</button>
+    <button id="contact" class="nav-button">Contact Me</button>
+    <button id="results" class="nav-button">(Results)</button>
+</div>`;
+    return nav;
+  }
+
+  function contactsNav() {
+    let nav = `<div class="nav">
+    <h1 class="header">Whitehead Tax Service</h1>
+    <button id="about" class="nav-button">About Me</button>
+    <button id="products" class="nav-button">Services</button>
+    <button id="contact" class="curOn">Contact Me</button>
+    <button id="results" class="nav-button">(Results)</button>
+</div>`;
+    return nav;
+  }
+
   function render() {
     let aboutMeStuff = aboutMeHTML();
+    let aboutMeNav = aboutNav();
     let productsStuff = productsHTML();
+    let productsNav = servicesNav();
     let contactStuff = contactHTML();
+    let contactNav = contactsNav();
+
     let display;
+    let nav;
 
     if (store.html === "aboutMe") {
       display = aboutMeStuff;
+      nav = aboutMeNav;
     }
     if (store.html === "productsAndServices") {
       display = productsStuff;
+      nav = productsNav;
     }
     if (store.html === "contactMe") {
       display = contactStuff;
+      nav = contactNav;
     }
 
+    $("#nav-bar").html(nav);
     $("#stuff").html(display);
   }
 
   function handleAboutMeClicked() {
-    $("#about").on("click", event => {
+    $("#nav-bar").on("click", '#about', event => {
       event.preventDefault();
       store.html = "aboutMe";
       render();
@@ -133,7 +175,7 @@ const eventHandlers = (function() {
   }
 
   function handleProductsAndServicesClicked() {
-    $("#products").on("click", event => {
+    $("#nav-bar").on("click", ('#products'), event => {
       event.preventDefault();
       store.html = "productsAndServices";
       render();
@@ -147,7 +189,7 @@ const eventHandlers = (function() {
   }
 
   function handleContactMeClicked() {
-    $("#contact").on("click", event => {
+    $("#nav-bar").on("click", ('#contact'), event => {
       event.preventDefault();
       store.html = "contactMe";
       render();
@@ -167,7 +209,7 @@ const eventHandlers = (function() {
   }
 
   function handleContactSubmitClicked() {
-    $(".contactForm").on("submit", event => {
+    $("#stuff").on("submit", ('.contactForm'), event => {
       event.preventDefault();
       console.log("hello");
     });
