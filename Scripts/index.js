@@ -1,11 +1,11 @@
 'use strict';
 
-/* global eventHandlers */
+/* global eventHandlers $ */
 // eslint-disable-next-line no-unused-vars
 
 $(document).ready(function () {
 
   eventHandlers.handleClicks();
-  eventHandlers.render();
+  // eventHandlers.render();
 
 });
