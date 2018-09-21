@@ -58,21 +58,36 @@ const eventHandlers = (function() {
       </div>
 </div>
 <div id="contactServicesGrid">
-<h3 class="banner">Want to know more?</h3>
+<h3 class="banner">     Want to know more?</h3>
 <button class="contactButton2 nav-button">Contact Me</button>
 </div>`;
     return html;
   }
 
   function contactHTML() {
-    let html = ` <div id="contactStuff">
+    let html = `            <div id="contactStuff">
     <div class="contactGrid">
         <div class="contactHeader">
             <h2>Contact Me</h2>
         </div>
         <div class="contactInfo">
-            <p>Fill out the form below, and we can get to scheduling your tax appointment! If you're not quite sure what exactly you need for your taxes, no problem! I can get more details from you, and we can discuss what your best option is.</p>
+            <p>Fill out the form below, and we can get to scheduling your tax appointment! If you're not
+                quite sure what exactly you need for your taxes, no problem! I can get more details from
+                you, and we can discuss what your best option is.</p>
         </div>
+        <form class="contactForm">
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Last Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}[0-9]{3}[0-9]{4}" title="123-456-7890 or 1234567890" required />
+            <select>
+                <option value="personal">Personal Taxes</option>
+                <option value="business">Business Taxes</option>
+                <option value="other">Other</option>
+            </select>
+            <button type="submit" class="contactSubmit">Submit</button>
+        </form>
+        <h4>Prefer to contact me directly, or having issues with the form? You can reach me at the phone number or e-mail below.</h4>
         <div class="contactPhoneImg">
             <img src="./Images/phone.jpg" class="phoneImg">
         </div>
@@ -85,7 +100,7 @@ const eventHandlers = (function() {
         <div class="contactEmail">
             <p>WhiteheadRandy@hotmail.com</p>
         </div>
-        </div>
+    </div>
 </div>`;
     return html;
   }
@@ -151,10 +166,18 @@ const eventHandlers = (function() {
     });
   }
 
+  function handleContactSubmitClicked() {
+    $(".contactForm").on("submit", event => {
+      event.preventDefault();
+      console.log("hello");
+    });
+  }
+
   function handleClicks() {
     handleAboutMeClicked();
     handleProductsAndServicesClicked();
     handleContactMeClicked();
+    handleContactSubmitClicked();
   }
 
   return {
