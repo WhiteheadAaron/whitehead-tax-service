@@ -76,11 +76,11 @@ const eventHandlers = (function() {
                 you, and we can discuss what your best option is.</p>
         </div>
         <form class="contactForm">
-            <input type="text" placeholder="First Name" required>
-            <input type="text" placeholder="Last Name" required>
-            <input type="email" placeholder="Email Address" required>
-            <input type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}[0-9]{3}[0-9]{4}" title="123-456-7890 or 1234567890" required />
-            <select>
+            <input type="text" class="firstName" placeholder="First Name" required>
+            <input type="text" class="lastName" placeholder="Last Name" required>
+            <input type="email" class="email" placeholder="Email Address" required>
+            <input type="tel" class="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}[0-9]{3}[0-9]{4}" title="123-456-7890 or 1234567890" required />
+            <select class="dropdown">
                 <option value="personal">Personal Taxes</option>
                 <option value="business">Business Taxes</option>
                 <option value="other">Other</option>
@@ -138,6 +138,17 @@ const eventHandlers = (function() {
     return nav;
   }
 
+  function resultsNavF() {
+    let nav = `<div class="nav">
+    <h1 class="header">Whitehead Tax Service</h1>
+    <button id="about" class="nav-button">About Me</button>
+    <button id="products" class="nav-button">Services</button>
+    <button id="contact" class="nav-button">Contact Me</button>
+    <button id="results" class="curOn">(Results)</button>
+</div>`;
+    return nav;
+  }
+
   function contactSubmitted() {
     let stuff = `<div id="contactStuff">
     <div class="contactGrid">
@@ -164,6 +175,24 @@ const eventHandlers = (function() {
     return stuff;
   }
 
+  function generateItemHtml(item) {
+    let html = `<div class="itemGrid">
+    <h4>${item.firstName} ${item.lastName}</h4>
+    <p>${item.email}, ${item.phone}, ${item.services}</p>
+</div>`;
+    return html;
+  }
+
+  function generateString(clients) {
+    const items = clients.map((item) => generateItemHtml(item));
+    return items.join('');
+  }
+
+  function resultsHTML() {
+    let html = generateString(store.items);
+    return html;
+  }
+
   function render() {
     let aboutMeStuff = aboutMeHTML();
     let aboutMeNav = aboutNav();
@@ -172,6 +201,8 @@ const eventHandlers = (function() {
     let contactStuff = contactHTML();
     let contactNav = contactsNav();
     let newContactStuff = contactSubmitted();
+    let results = resultsHTML();
+    let resultsNav = resultsNavF();
 
     let display;
     let nav;
@@ -191,6 +222,10 @@ const eventHandlers = (function() {
     if (store.html === "contactMeSubmitted") {
       display = newContactStuff;
       nav = contactNav;
+    }
+    if (store.html === "results") {
+      display = results;
+      nav = resultsNav;
     }
 
     $("#nav-bar").html(nav);
@@ -242,7 +277,28 @@ const eventHandlers = (function() {
   function handleContactSubmitClicked() {
     $("#stuff").on("submit", ".contactForm", event => {
       event.preventDefault();
+      let firstName = $(".firstName").val();
+      let lastName = $(".lastName").val();
+      let email = $(".email").val();
+      let phone = $(".phone").val();
+      let services = $(".dropdown").val();
+      let newObj = {
+        firstName,
+        lastName,
+        email,
+        phone,
+        services
+      };
+      store.items.push(newObj);
       store.html = "contactMeSubmitted";
+      render();
+    });
+  }
+
+  function handleResultsClicked() {
+    $("#nav-bar").on("click", "#results", event => {
+      event.preventDefault();
+      store.html = "results";
       render();
     });
   }
@@ -252,6 +308,7 @@ const eventHandlers = (function() {
     handleProductsAndServicesClicked();
     handleContactMeClicked();
     handleContactSubmitClicked();
+    handleResultsClicked();
   }
 
   return {

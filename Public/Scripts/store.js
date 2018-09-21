@@ -4,6 +4,7 @@ const store = (function() {
   
 
   return {
-    html: 'aboutMe'
+    html: 'aboutMe',
+    items: []
   };
 }());

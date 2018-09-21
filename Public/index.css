@@ -225,13 +225,13 @@ h1 {
 
 
 .emailImg {
-    max-height: 120%;
-    width: 120%;
+    max-height: 100px;
+    width: 100px;
 }
 
 .phoneImg {
-    max-height: 80%;
-    width: 80%;
+    max-height: 100px;
+    width: 100px;
 }
 
 .contactPhone {
@@ -329,4 +329,8 @@ a {
 
 .curOn:focus {
     outline-width: 0;
+}
+
+.itemGrid {
+    border-bottom: solid 1px lightgrey;
 }
