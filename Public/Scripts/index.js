@@ -6,6 +6,6 @@
 $(document).ready(function () {
 
   eventHandlers.handleClicks();
-  // eventHandlers.render();
+  eventHandlers.render();
 
 });
