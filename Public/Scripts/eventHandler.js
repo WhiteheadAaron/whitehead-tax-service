@@ -58,14 +58,14 @@ const eventHandlers = (function() {
       </div>
 </div>
 <div id="contactServicesGrid">
-<h3 class="banner">     Want to know more?</h3>
+<h3 class="banner">Want to schedule an appointment?</h3>
 <button class="contactButton2 nav-button">Contact Me</button>
 </div>`;
     return html;
   }
 
   function contactHTML() {
-    let html = `            <div id="contactStuff">
+    let html = `<div id="contactStuff">
     <div class="contactGrid">
         <div class="contactHeader">
             <h2>Contact Me</h2>
@@ -87,7 +87,7 @@ const eventHandlers = (function() {
             </select>
             <button type="submit" class="contactSubmit">Submit</button>
         </form>
-        <h4>Prefer to contact me directly, or having issues with the form? You can reach me at the phone number or e-mail below.</h4>
+        <h4>Having issues with the form, or prefer to contact me directly? You can reach me at the phone number or e-mail below.</h4>
         <div class="contactPhoneImg">
             <img src="./Images/phone.jpg" class="phoneImg">
         </div>
@@ -138,6 +138,32 @@ const eventHandlers = (function() {
     return nav;
   }
 
+  function contactSubmitted() {
+    let stuff = `<div id="contactStuff">
+    <div class="contactGrid">
+
+        <h3>Thank you! I will contact you as soon as possible to schedule your appointment! Sit back and relax, and I'll handle your taxes for you.</h3>
+        <img src="Images/giphy.gif">
+        
+        <h4>Need to contact me directly? You can reach me at the phone
+            number or e-mail below.</h4>
+        <div class="contactPhoneImg">
+            <img src="./Images/phone.jpg" class="phoneImg">
+        </div>
+        <div class="contactEmailImg">
+            <img src="./Images/email.jpg" class="emailImg">
+        </div>
+        <div class="contactPhone">
+            <p>(608) 333-1090</p>
+        </div>
+        <div class="contactEmail">
+            <p>WhiteheadRandy@hotmail.com</p>
+        </div>
+    </div>
+</div>`;
+    return stuff;
+  }
+
   function render() {
     let aboutMeStuff = aboutMeHTML();
     let aboutMeNav = aboutNav();
@@ -145,6 +171,7 @@ const eventHandlers = (function() {
     let productsNav = servicesNav();
     let contactStuff = contactHTML();
     let contactNav = contactsNav();
+    let newContactStuff = contactSubmitted();
 
     let display;
     let nav;
@@ -161,13 +188,17 @@ const eventHandlers = (function() {
       display = contactStuff;
       nav = contactNav;
     }
+    if (store.html === "contactMeSubmitted") {
+      display = newContactStuff;
+      nav = contactNav;
+    }
 
     $("#nav-bar").html(nav);
     $("#stuff").html(display);
   }
 
   function handleAboutMeClicked() {
-    $("#nav-bar").on("click", '#about', event => {
+    $("#nav-bar").on("click", "#about", event => {
       event.preventDefault();
       store.html = "aboutMe";
       render();
@@ -175,7 +206,7 @@ const eventHandlers = (function() {
   }
 
   function handleProductsAndServicesClicked() {
-    $("#nav-bar").on("click", ('#products'), event => {
+    $("#nav-bar").on("click", "#products", event => {
       event.preventDefault();
       store.html = "productsAndServices";
       render();
@@ -189,7 +220,7 @@ const eventHandlers = (function() {
   }
 
   function handleContactMeClicked() {
-    $("#nav-bar").on("click", ('#contact'), event => {
+    $("#nav-bar").on("click", "#contact", event => {
       event.preventDefault();
       store.html = "contactMe";
       render();
@@ -209,9 +240,10 @@ const eventHandlers = (function() {
   }
 
   function handleContactSubmitClicked() {
-    $("#stuff").on("submit", ('.contactForm'), event => {
+    $("#stuff").on("submit", ".contactForm", event => {
       event.preventDefault();
-      console.log("hello");
+      store.html = "contactMeSubmitted";
+      render();
     });
   }
 
