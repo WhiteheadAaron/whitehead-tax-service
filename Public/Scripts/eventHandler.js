@@ -179,7 +179,7 @@ const eventHandlers = (function () {
   function generateItemHtml(item) {
     let html = `<div class="itemGrid">
     <h4>${item.firstName} ${item.lastName}</h4>
-    <p>${item.email}, ${item.phone}, ${item.services}</p>
+    <p>${item.email}, ${item.phone}, ${item.taxType}</p>
 </div>`;
     return html;
   }
