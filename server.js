@@ -3,6 +3,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const path = require('path');
 
 
 const {
@@ -50,6 +51,10 @@ app.use((err, req, res, next) => {
       message: 'Internal Server Error'
     });
   }
+});
+
+app.get('*', (request, response) => {
+  response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 
