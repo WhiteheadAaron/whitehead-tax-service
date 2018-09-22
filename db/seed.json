@@ -1,0 +1,23 @@
+[
+  {
+    "firstName": "Aaron",
+    "lastName": "Whitehead",
+    "email": "whitehead.aaron@live.com",
+    "phone": "608-333-4947",
+    "taxType": "Personal"
+  },
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "johndoe@gmail.com",
+    "phone": "444-444-4444",
+    "taxType": "Work"
+  },
+  {
+    "firstName": "Jane",
+    "lastName": "Deer",
+    "email": "deerjane@live.com",
+    "phone": "777-888-9999",
+    "taxType": "Other"
+  }
+]

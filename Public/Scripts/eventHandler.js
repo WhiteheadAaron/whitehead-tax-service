@@ -1,8 +1,8 @@
 "use strict";
 
-/* global store $  */
+/* global store $ api " */
 
-const eventHandlers = (function() {
+const eventHandlers = (function () {
   function aboutMeHTML() {
     let html = `            <div id="aboutMeStuff">
     <div class="aboutMeGrid">
@@ -80,7 +80,8 @@ const eventHandlers = (function() {
             <input type="text" class="lastName" placeholder="Last Name" required>
             <input type="email" class="email" placeholder="Email Address" required>
             <input type="tel" class="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}[0-9]{3}[0-9]{4}" title="123-456-7890 or 1234567890" required />
-            <select class="dropdown">
+            <select class="dropdown" required>
+              <option value="" disabled selected>Select Your Tax Type</option>
                 <option value="personal">Personal Taxes</option>
                 <option value="business">Business Taxes</option>
                 <option value="other">Other</option>
@@ -184,8 +185,8 @@ const eventHandlers = (function() {
   }
 
   function generateString(clients) {
-    const items = clients.map((item) => generateItemHtml(item));
-    return items.join('');
+    const items = clients.map(item => generateItemHtml(item));
+    return items.join("");
   }
 
   function resultsHTML() {
@@ -281,17 +282,20 @@ const eventHandlers = (function() {
       let lastName = $(".lastName").val();
       let email = $(".email").val();
       let phone = $(".phone").val();
-      let services = $(".dropdown").val();
+      let taxType = $(".dropdown").val();
       let newObj = {
         firstName,
         lastName,
         email,
         phone,
-        services
+        taxType
       };
-      store.items.push(newObj);
-      store.html = "contactMeSubmitted";
-      render();
+      api.create('/results', newObj)
+        .then(() => {
+          store.items.push(newObj);
+          store.html = "contactMeSubmitted";
+          render();
+        });
     });
   }
 
