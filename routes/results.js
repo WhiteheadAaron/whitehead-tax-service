@@ -37,12 +37,6 @@ router.post("/", (req, res, next) => {
     return next(err);
   }
 
-  // if (!mongoose.Types.ObjectId.isValid(newObj.folderId)) {
-  //   const err = new Error("The `id` is not valid");
-  //   err.status = 400;
-  //   return next(err);
-  // }
-
   return Result.create(newObj)
     .then(results => {
       res.location(`${req.originalUrl}/${results.id}`);
