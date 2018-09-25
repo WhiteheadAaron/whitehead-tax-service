@@ -63,17 +63,15 @@ app.get('/', function (req, res) {
 
 
 if (require.main === module) {
-  mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true
-    })
+  mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
     .catch(err => {
       console.error(`ERROR: ${err.message}`);
       console.error('\n === Did you remember to start `mongod`? === \n');
       console.error(err);
     });
   app.listen(PORT, function () {
-      console.info(`Server listening on ${this.address().port}`);
-    })
+    console.info(`Server listening on ${this.address().port}`);
+  })
     .on('error', err => {
       console.error(err);
     });
