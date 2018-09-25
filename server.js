@@ -54,7 +54,7 @@ app.use((err, req, res, next) => {
 });
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + 'views/index.html'));
+  res.sendFile(path.join(__dirname + 'index.html'));
 });
 
 // app.get('*', (request, response) => {

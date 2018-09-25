@@ -18,13 +18,6 @@ const api = (function () {
     });
   };
 
-  const details = function (path) {
-    return $.ajax({
-      type: 'GET',
-      dataType: 'json',
-      url: path,
-    });
-  };
 
   const create = function (path, obj) {
     return $.ajax({
@@ -37,18 +30,9 @@ const api = (function () {
     });
   };
 
-  const remove = function (path) {
-    return $.ajax({
-      type: 'DELETE',
-      dataType: 'json',
-      url: path,
-    });
-  };
   return {
     create,
     search,
-    details,
-    remove,
     getItems
   };
 }());
