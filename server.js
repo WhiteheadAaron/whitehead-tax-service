@@ -31,9 +31,9 @@ app.use(express.json());
 // Mount routers
 app.use('/results', resultsRouter);
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + '/index.html'));
-});
+// app.get('/', function (req, res) {
+//   res.sendFile(path.join(__dirname + '/index.html'));
+// });
 
 // Custom 404 Not Found route handler
 app.use((req, res, next) => {
