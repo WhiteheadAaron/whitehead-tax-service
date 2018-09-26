@@ -31,6 +31,10 @@ app.use(express.json());
 // Mount routers
 app.use('/results', resultsRouter);
 
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname + '/public/index.html'));
+});
+
 // Custom 404 Not Found route handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
@@ -54,9 +58,7 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + '/public/index.html'));
-});
+
 
 // app.get('*', (request, response) => {
 //   response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
