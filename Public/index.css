@@ -51,7 +51,6 @@ h1 {
     background-color: white;
     font-size: 20px;
     cursor: pointer;
-    transition: all .5s;
     height: 50%;
 }
 
