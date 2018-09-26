@@ -32,7 +32,7 @@ app.use(express.json());
 app.use('/results', resultsRouter);
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname + '/public/index.html'));
+  res.sendFile(path.join(__dirname + 'index.html'));
 });
 
 // Custom 404 Not Found route handler
