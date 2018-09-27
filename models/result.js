@@ -18,13 +18,16 @@ const resultSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   taxType: {
     type: String,
     required: true
   },
+  checked: {
+    type: String,
+    required: true
+  }
 });
 
 // Add `createdAt` and `updatedAt` fields

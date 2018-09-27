@@ -18,7 +18,6 @@ const resultsJs = (function() {
   function handleHideCheckedClicked() {
     $("#stuff").on("click", ".hideAll", event => {
       event.preventDefault();
-      console.log("hello");
       store.checked = true;
       eventHandlers.render();
     });
@@ -27,36 +26,30 @@ const resultsJs = (function() {
   function handleShowCheckedClicked() {
     $("#stuff").on("click", ".showAll", event => {
       event.preventDefault();
-      console.log("hellooo");
       store.checked = false;
       eventHandlers.render();
     });
   }
 
-  function itemCheckToggled(id) {
-    const thisItem = store.items.find(item => item.id === id);
-    thisItem.checked = !thisItem.checked;
-  }
 
   function handleItemCheckClicked() {
     $("#stuff").on("click", ".checkbox", event => {
       const id = getItemIdFromElement(event.currentTarget);
       const thisItem = store.items.find(item => item.id === id);
-      let checked;
-      itemCheckToggled(id);
-      if (thisItem.checked) {
-          checked === true;
+
+      if (thisItem.checked === 'false') {
+          thisItem.checked = 'true';
       }
-      else {
-          checked === false;
+      else if (thisItem.checked === 'true') {
+          thisItem.checked = 'false';
       }
-      let newObj = {
-        checked
-      };
-      api.update(`/results/${id}`, newObj)
+      
+
+      api.update(`/results/${id}`, thisItem)
         .then(() => {
-            
-      });
+            eventHandlers.render();
+      })
+        .catch(err => next(err));
     });
   }
 
@@ -66,7 +59,7 @@ const resultsJs = (function() {
         "Are you sure? This is permanent and cannot be undone."
       );
       if (result) {
-        let deleteItems = store.items.filter(item => item.checked);
+        let deleteItems = store.items.filter(item => item.checked === 'true');
         console.log(deleteItems);
         for (let i = 0; i < deleteItems.length; i++) {
           let id = deleteItems[i].id;

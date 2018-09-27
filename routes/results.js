@@ -12,7 +12,7 @@ router.get("/", (req, res, next) => {
 
   Result.find()
     .sort([['createdAt', 'descending']])
-    .select("firstName lastName email phone taxType")
+    .select("firstName lastName email phone taxType checked")
     .then(results => {
       res.json(results);
     })
@@ -54,17 +54,21 @@ router.post("/", (req, res, next) => {
 router.put('/:id', (req, res, next) => {
   const id = req.params.id;
   const newObj = {
-    checked: req.body.checked
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    phone: req.body.phone,
+    checked: req.body.checked,
+    taxType: req.body.taxType
   }
+  console.log(newObj);
 
-  return Result.findOneAndUpdate(id, newObj, { new: true })
+  return Result.findOneAndUpdate({ _id: id }, newObj, { new: true })
     .select('firstName lastName email phone taxType checked')
     .then(results => {
       res.json(results);
     })
-    .catch(err => {
-      next(err);
-    })
+
 })
 
 router.delete('/:id', (req, res, next) => {

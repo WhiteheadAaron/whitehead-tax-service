@@ -187,14 +187,14 @@ const eventHandlers = (function() {
 
   function generateItemHtml(item) {
     let html;
-    if (item.checked) {
+    if (item.checked === 'true') {
       html = `<div class="itemGrid" data-item-id="${item.id}">
     <h4>${item.firstName} ${item.lastName}</h4>
     <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}</p>
     <input type="checkbox" class="checkbox" value="checked" checked="checked">
 </div>`;
     }
-    else {
+    if (item.checked === 'false') {
       html = `<div class="itemGrid" data-item-id="${item.id}">
     <h4>${item.firstName} ${item.lastName}</h4>
     <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}</p>
@@ -211,10 +211,14 @@ const eventHandlers = (function() {
 
   function resultsHTML() {
     let items = store.items;
-    if (store.checked) {
-      items = items.filter(item => !item.checked);
+    let html;
+    if (store.checked === true) {
+      items = items.filter(item => item.checked === 'false');
+      html = checkOrDeleteHtml() + generateString(items);
     }
-    let html = checkOrDeleteHtml() + generateString(items);
+    else if (store.checked === false) {
+      html = checkOrDeleteHtml() + generateString(store.items);
+    }
     return html;
   }
 

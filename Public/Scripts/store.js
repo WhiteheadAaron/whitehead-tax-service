@@ -13,7 +13,7 @@ const store = (function() {
     items: [],
     checked: false,
 
-    
+
     findAndDelete
   };
 }());

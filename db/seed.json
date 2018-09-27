@@ -4,41 +4,47 @@
     "lastName": "Whitehead",
     "email": "whitehead.aaron@live.com",
     "phone": "608-333-4947",
-    "taxType": "Personal"
+    "taxType": "Personal",
+    "checked": "false"
   },
   {
     "firstName": "John",
     "lastName": "Doe",
     "email": "johndoe@gmail.com",
     "phone": "444-444-4444",
-    "taxType": "Work"
+    "taxType": "Business",
+    "checked": "true"
   },
   {
     "firstName": "Jane",
     "lastName": "Deer",
     "email": "deerjane@live.com",
     "phone": "777-888-9999",
-    "taxType": "Other"
+    "taxType": "Other",
+    "checked": "false"
   },
   {
     "firstName": "John",
     "lastName": "Hello",
     "email": "jodoe@gmail.com",
     "phone": "444-444-3344",
-    "taxType": "Work"
+    "taxType": "Business",
+    "checked": "false"
   },
   {
     "firstName": "John",
     "lastName": "Legend",
     "email": "johndoe@gmom",
     "phone": "444-334-4444",
-    "taxType": "Work"
+    "taxType": "Business",
+    "checked": "false"
   },
   {
     "firstName": "Why",
     "lastName": "Doe",
     "email": "j@gmail.com",
     "phone": "244-444-4444",
-    "taxType": "Work"
+    "taxType": "Business",
+    "checked": "false"
   }
 ]
