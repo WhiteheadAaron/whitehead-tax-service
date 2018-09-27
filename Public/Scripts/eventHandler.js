@@ -187,17 +187,20 @@ const eventHandlers = (function() {
 
   function generateItemHtml(item) {
     let html;
-    if (item.checked === 'true') {
+    let date;
+    date = new Date(item.createdAt);
+    date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    if (item.checked === "true") {
       html = `<div class="itemGrid" data-item-id="${item.id}">
     <h4>${item.firstName} ${item.lastName}</h4>
-    <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}, ${item.createdAt}</p>
+    <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}, ${date}</p>
     <input type="checkbox" class="checkbox" value="checked" checked="checked">
 </div>`;
     }
-    if (item.checked === 'false') {
+    if (item.checked === "false") {
       html = `<div class="itemGrid" data-item-id="${item.id}">
     <h4>${item.firstName} ${item.lastName}</h4>
-    <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}, ${item.createdAt}</p>
+    <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}, ${date}</p>
     <input type="checkbox" class="checkbox" value="checked">
 </div>`;
     }
@@ -214,10 +217,9 @@ const eventHandlers = (function() {
     console.log(items);
     let html;
     if (store.checked === true) {
-      items = items.filter(item => item.checked === 'false');
+      items = items.filter(item => item.checked === "false");
       html = checkOrDeleteHtml() + generateString(items);
-    }
-    else if (store.checked === false) {
+    } else if (store.checked === false) {
       html = checkOrDeleteHtml() + generateString(store.items);
     }
     return html;
@@ -313,7 +315,7 @@ const eventHandlers = (function() {
       let phone = $(".phone").val();
       let taxType = $(".dropdown").val();
       let createdAt = $.now();
-      console.log(createdAt);
+
       let newObj = {
         firstName,
         lastName,
@@ -323,11 +325,10 @@ const eventHandlers = (function() {
         checked: false,
         createdAt
       };
-      api.create("/results", newObj)
-        .then(() => {
-          store.items.push(newObj);
-          store.html = "contactMeSubmitted";
-          render();
+      api.create("/results", newObj).then(() => {
+        store.items.push(newObj);
+        store.html = "contactMeSubmitted";
+        render();
       });
     });
   }
