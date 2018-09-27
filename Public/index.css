@@ -333,3 +333,17 @@ a {
 .itemGrid {
     border-bottom: solid 1px lightgrey;
 }
+
+.checkbox {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.resultsp {
+    display: inline-block;
+}
+
+.buttons {
+    border-bottom: solid 1px lightgrey;
+    padding-bottom: 20px;
+}

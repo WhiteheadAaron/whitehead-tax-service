@@ -2,7 +2,7 @@
 
 /* global store $ api " */
 
-const eventHandlers = (function () {
+const eventHandlers = (function() {
   function aboutMeHTML() {
     let html = `            <div id="aboutMeStuff">
     <div class="aboutMeGrid">
@@ -139,17 +139,6 @@ const eventHandlers = (function () {
     return nav;
   }
 
-  function resultsNavF() {
-    let nav = `<div class="nav">
-    <h1 class="header">Whitehead Tax Service</h1>
-    <button id="about" class="nav-button">About Me</button>
-    <button id="products" class="nav-button">Services</button>
-    <button id="contact" class="nav-button">Contact Me</button>
-    <button id="results" class="curOn">(Results)</button>
-</div>`;
-    return nav;
-  }
-
   function contactSubmitted() {
     let stuff = `<div id="contactStuff">
     <div class="contactGrid">
@@ -176,11 +165,42 @@ const eventHandlers = (function () {
     return stuff;
   }
 
+  function resultsNavF() {
+    let nav = `<div class="nav">
+        <h1 class="header">Whitehead Tax Service</h1>
+        <button id="about" class="nav-button">About Me</button>
+        <button id="products" class="nav-button">Services</button>
+        <button id="contact" class="nav-button">Contact Me</button>
+        <button id="results" class="curOn">(Results)</button>
+    </div>`;
+    return nav;
+  }
+
+  function checkOrDeleteHtml() {
+    let html = `<div class="buttons">
+      <button class="deleteAll">Delete Checked</button>
+      <button class="hideAll">Hide Checked</button>
+      <button class="showAll">Show All</button>
+  </div>`;
+    return html;
+  }
+
   function generateItemHtml(item) {
-    let html = `<div class="itemGrid">
+    let html;
+    if (item.checked) {
+      html = `<div class="itemGrid" data-item-id="${item.id}">
     <h4>${item.firstName} ${item.lastName}</h4>
-    <p>${item.email}, ${item.phone}, ${item.taxType}</p>
+    <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}</p>
+    <input type="checkbox" class="checkbox" value="checked" checked="checked">
 </div>`;
+    }
+    else {
+      html = `<div class="itemGrid" data-item-id="${item.id}">
+    <h4>${item.firstName} ${item.lastName}</h4>
+    <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}</p>
+    <input type="checkbox" class="checkbox" value="checked">
+</div>`;
+    }
     return html;
   }
 
@@ -190,7 +210,11 @@ const eventHandlers = (function () {
   }
 
   function resultsHTML() {
-    let html = generateString(store.items);
+    let items = store.items;
+    if (store.checked) {
+      items = items.filter(item => !item.checked);
+    }
+    let html = checkOrDeleteHtml() + generateString(items);
     return html;
   }
 
@@ -288,22 +312,14 @@ const eventHandlers = (function () {
         lastName,
         email,
         phone,
-        taxType
+        taxType,
+        checked: false
       };
-      api.create('/results', newObj)
-        .then(() => {
-          store.items.push(newObj);
-          store.html = "contactMeSubmitted";
-          render();
-        });
-    });
-  }
-
-  function handleResultsClicked() {
-    $("#nav-bar").on("click", "#results", event => {
-      event.preventDefault();
-      store.html = "results";
-      render();
+      api.create("/results", newObj).then(() => {
+        store.items.push(newObj);
+        store.html = "contactMeSubmitted";
+        render();
+      });
     });
   }
 
@@ -312,7 +328,6 @@ const eventHandlers = (function () {
     handleProductsAndServicesClicked();
     handleContactMeClicked();
     handleContactSubmitClicked();
-    handleResultsClicked();
   }
 
   return {

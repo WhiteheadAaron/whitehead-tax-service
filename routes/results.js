@@ -27,7 +27,8 @@ router.post("/", (req, res, next) => {
     lastName: req.body.lastName,
     email: req.body.email,
     phone: req.body.phone,
-    taxType: req.body.taxType
+    taxType: req.body.taxType,
+    checked: false
   };
 
   if (!newObj.firstName || !newObj.lastName) {
@@ -48,6 +49,22 @@ router.post("/", (req, res, next) => {
       console.error(err);
     });
 });
+
+router.put('/', (req, res, next) => {
+  const id = req.params.id;
+  const newObj = {
+    checked: req.body.checked
+  }
+
+  return Result.findOneAndUpdate(id, newObj, { new: true })
+    .select('firstName lastName email phone taxType checked')
+    .then(results => {
+      res.json(results);
+    })
+    .catch(err => {
+      next(err);
+    })
+})
 
 
 

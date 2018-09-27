@@ -30,9 +30,29 @@ const api = (function () {
     });
   };
 
+  const update = function(path, obj) {
+    return $.ajax({
+      type: 'PUT',
+      url: path,
+      contentType: 'application/json',
+      dataType: 'json',
+      data: JSON.stringify(obj)
+    });
+  };
+
+  const remove = function (path) {
+    return $.ajax({
+      type: 'DELETE',
+      dataType: json,
+      url: path
+    })
+  };
+
   return {
     create,
     search,
-    getItems
+    getItems,
+    remove,
+    update
   };
 }());
