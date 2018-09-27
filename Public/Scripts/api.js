@@ -40,10 +40,10 @@ const api = (function () {
     });
   };
 
-  const remove = function (path) {
+  const deleteItem = function (path) {
     return $.ajax({
       type: 'DELETE',
-      dataType: json,
+      dataType: 'json',
       url: path
     })
   };
@@ -52,7 +52,7 @@ const api = (function () {
     create,
     search,
     getItems,
-    remove,
+    deleteItem,
     update
   };
 }());

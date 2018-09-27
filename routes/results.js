@@ -11,6 +11,7 @@ router.get("/", (req, res, next) => {
 
 
   Result.find()
+    .sort([['createdAt', 'descending']])
     .select("firstName lastName email phone taxType")
     .then(results => {
       res.json(results);
@@ -50,7 +51,7 @@ router.post("/", (req, res, next) => {
     });
 });
 
-router.put('/', (req, res, next) => {
+router.put('/:id', (req, res, next) => {
   const id = req.params.id;
   const newObj = {
     checked: req.body.checked
@@ -60,6 +61,19 @@ router.put('/', (req, res, next) => {
     .select('firstName lastName email phone taxType checked')
     .then(results => {
       res.json(results);
+    })
+    .catch(err => {
+      next(err);
+    })
+})
+
+router.delete('/:id', (req, res, next) => {
+  const id = req.params.id;
+  console.log(id);
+  
+  return Result.findOneAndDelete({ _id: id })
+    .then(() => {
+      res.status(204).end();
     })
     .catch(err => {
       next(err);
