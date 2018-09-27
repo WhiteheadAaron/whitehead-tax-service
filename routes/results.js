@@ -68,6 +68,9 @@ router.put('/:id', (req, res, next) => {
     .then(results => {
       res.json(results);
     })
+    .catch(err => {
+      console.log(err);
+    })
 
 })
 
