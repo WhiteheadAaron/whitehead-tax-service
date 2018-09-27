@@ -12,7 +12,7 @@ router.get("/", (req, res, next) => {
 
   Result.find()
     .sort([['createdAt', 'descending']])
-    .select("firstName lastName email phone taxType checked")
+    .select("firstName lastName email phone taxType checked createdAt")
     .then(results => {
       res.json(results);
     })
@@ -29,7 +29,8 @@ router.post("/", (req, res, next) => {
     email: req.body.email,
     phone: req.body.phone,
     taxType: req.body.taxType,
-    checked: false
+    checked: false,
+    createdAt: req.body.createdAt
   };
 
   if (!newObj.firstName || !newObj.lastName) {
@@ -59,7 +60,8 @@ router.put('/:id', (req, res, next) => {
     email: req.body.email,
     phone: req.body.phone,
     checked: req.body.checked,
-    taxType: req.body.taxType
+    taxType: req.body.taxType,
+    createdAt: req.body.createdAt
   }
   console.log(newObj);
 
