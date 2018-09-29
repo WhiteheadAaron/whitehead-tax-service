@@ -331,7 +331,8 @@ a {
 }
 
 .itemGrid {
-    border-bottom: solid 1px lightgrey;
+    border-bottom: solid 1px black;
+    padding: 10px;
 }
 
 .checkbox {
@@ -346,4 +347,12 @@ a {
 .buttons {
     border-bottom: solid 1px lightgrey;
     padding-bottom: 20px;
+}
+
+.itemChecked {
+    background-color: rgb(234, 255, 234);
+}
+
+.itemNotChecked {
+    background-color: rgb(255, 221, 221);
 }

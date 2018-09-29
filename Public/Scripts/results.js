@@ -1,6 +1,8 @@
 "use strict";
 
-const resultsJs = (function() {
+/* global $ store eventHandlers */
+
+const resultsJs = (function () {
   function handleResultsClicked() {
     $("#nav-bar").on("click", "#results", event => {
       event.preventDefault();
@@ -57,20 +59,22 @@ const resultsJs = (function() {
   function handleDeleteCheckedClicked() {
     $("#stuff").on("click", ".deleteAll", event => {
       let newArray = store.items.filter(item => item.checked === "true");
+      let message;
       if (newArray.length > 0) {
-        let result = confirm(
-          `Are you sure? This will permanently delete ${newArray.length} items.`
-        );
+        if (store.checked === false) {
+          message = `Are you sure? This will permanently delete ${newArray.length} items.`;
+        }
+        if (store.checked === true) {
+          message = `Are you sure? There are currently ${newArray.length} items that are checked and hidden. This will permanently delete all of them.`;
+        }
+        let result = confirm(message);
         if (result) {
           let deleteItems = store.items.filter(item => item.checked === "true");
-          console.log(deleteItems);
           for (let i = 0; i < deleteItems.length; i++) {
             let id = deleteItems[i].id;
-            console.log(id);
             api
               .deleteItem(`/results/${id}`)
               .then(() => {
-                console.log(store.items.filter(item => item.id === id));
                 store.findAndDelete(id);
               })
               .then(() => {
@@ -82,12 +86,23 @@ const resultsJs = (function() {
     });
   }
 
+  function dropdownFilterUsed() {
+    $('#stuff').on('change', '.filterDropdown', () => {
+      let value = $('.filterDropdown').val();
+      if (store.filter !== value) {
+        store.filter = String(value);
+        eventHandlers.render();
+      }
+    });
+  }
+
   function handleClicks() {
     handleResultsClicked();
     handleHideCheckedClicked();
     handleItemCheckClicked();
     handleShowCheckedClicked();
     handleDeleteCheckedClicked();
+    dropdownFilterUsed();
   }
 
   return {

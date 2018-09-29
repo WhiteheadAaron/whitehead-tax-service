@@ -12,6 +12,7 @@ const store = (function() {
     searchTerm: '',
     items: [],
     checked: false,
+    filter: null,
 
 
     findAndDelete

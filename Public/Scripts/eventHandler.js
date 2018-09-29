@@ -2,7 +2,7 @@
 
 /* global store $ api " */
 
-const eventHandlers = (function() {
+const eventHandlers = (function () {
   function aboutMeHTML() {
     let html = `<div id="aboutMeStuff">
     <div class="aboutMeGrid">
@@ -82,9 +82,9 @@ const eventHandlers = (function() {
             <input type="tel" class="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}|[0-9]{3}[0-9]{3}[0-9]{4}" title="123-456-7890 or 1234567890" required />
             <select class="dropdown" required>
               <option value="" disabled selected>Select Your Tax Type</option>
-                <option value="personal">Personal Taxes</option>
-                <option value="business">Business Taxes</option>
-                <option value="other">Other</option>
+                <option value="Personal">Personal Taxes</option>
+                <option value="Business">Business Taxes</option>
+                <option value="Other">Other</option>
             </select>
             <button type="submit" class="contactSubmit">Submit</button>
         </form>
@@ -181,6 +181,13 @@ const eventHandlers = (function() {
       <button class="deleteAll">Delete Checked</button>
       <button class="hideAll">Hide Checked</button>
       <button class="showAll">Show All</button>
+      <select class="filterDropdown" required>
+        <option value= "" disabled selected>Sort By</option>
+        <option value="alphabetical">Alphabetical</option>
+        <option value="mostRecent">Most Recent</option>
+        <option value="personalT">Personal Taxes</option>
+        <option value="businessT">Business Taxes</option>
+    </select>
   </div>`;
     return html;
   }
@@ -191,14 +198,14 @@ const eventHandlers = (function() {
     date = new Date(item.createdAt);
     date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
     if (item.checked === "true") {
-      html = `<div class="itemGrid" data-item-id="${item.id}">
+      html = `<div class="itemGrid itemChecked" data-item-id="${item.id}">
     <h4>${item.firstName} ${item.lastName}</h4>
     <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}, ${date}</p>
     <input type="checkbox" class="checkbox" value="checked" checked="checked">
 </div>`;
     }
     if (item.checked === "false") {
-      html = `<div class="itemGrid" data-item-id="${item.id}">
+      html = `<div class="itemGrid itemNotChecked" data-item-id="${item.id}">
     <h4>${item.firstName} ${item.lastName}</h4>
     <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}, ${date}</p>
     <input type="checkbox" class="checkbox" value="checked">
@@ -214,14 +221,39 @@ const eventHandlers = (function() {
 
   function resultsHTML() {
     let items = store.items;
-    console.log(items);
     let html;
     if (store.checked === true) {
       items = items.filter(item => item.checked === "false");
-      html = checkOrDeleteHtml() + generateString(items);
-    } else if (store.checked === false) {
-      html = checkOrDeleteHtml() + generateString(store.items);
     }
+    if (store.filter === 'personalT') {
+      items = items.filter(item => item.taxType === "Personal");
+    }
+
+    if (store.filter === 'businessT') {
+      items = items.filter(item => item.taxType === "Business");
+    }
+
+    if (store.filter === 'alphabetical') {
+      items = items.sort(function (a, b) {
+        let fullNameA = a.firstName + a.lastName;
+        let fullNameB = b.firstName + b.lastName;
+        var textA = fullNameA.toUpperCase();
+        var textB = fullNameB.toUpperCase();
+        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      });
+      console.log(items);
+    }
+
+    if (store.filter === "mostRecent") {
+      items = items.sort(function (a, b) {
+        a = new Date(a.createdAt);
+        b = new Date(b.createdAt);
+        return a > b ? -1 : a < b ? 1 : 0;
+      });
+    }
+
+
+    html = checkOrDeleteHtml() + generateString(items);
     return html;
   }
 
