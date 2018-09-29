@@ -227,10 +227,20 @@ const eventHandlers = (function () {
     }
     if (store.filter === 'personalT') {
       items = items.filter(item => item.taxType === "Personal");
+      items = items.sort(function (a, b) {
+        a = new Date(a.createdAt);
+        b = new Date(b.createdAt);
+        return a > b ? -1 : a < b ? 1 : 0;
+      });
     }
 
     if (store.filter === 'businessT') {
       items = items.filter(item => item.taxType === "Business");
+      items = items.sort(function (a, b) {
+        a = new Date(a.createdAt);
+        b = new Date(b.createdAt);
+        return a > b ? -1 : a < b ? 1 : 0;
+      });
     }
 
     if (store.filter === 'alphabetical') {
