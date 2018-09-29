@@ -36,7 +36,7 @@
     "lastName": "Legend",
     "email": "johndoe@gmom",
     "phone": "444-334-4444",
-    "taxType": "Business",
+    "taxType": "Personal",
     "checked": "false"
   },
   {
@@ -44,7 +44,7 @@
     "lastName": "Doe",
     "email": "j@gmail.com",
     "phone": "244-444-4444",
-    "taxType": "Business",
-    "checked": "false"
+    "taxType": "Other",
+    "checked": "true"
   }
 ]

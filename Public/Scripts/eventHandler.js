@@ -4,7 +4,7 @@
 
 const eventHandlers = (function() {
   function aboutMeHTML() {
-    let html = `            <div id="aboutMeStuff">
+    let html = `<div id="aboutMeStuff">
     <div class="aboutMeGrid">
         <div class="aboutHeader">
             <h2>Randy Whitehead</h2>

@@ -1,21 +1,20 @@
-'use strict';
+"use strict";
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const {
-  MONGODB_URI
-} = require('../config');
-const Result = require('../models/result');
+const { MONGODB_URI } = require("../config");
+const Result = require("../models/result");
 
+const results = require("../db/seed.json");
 
-const results = require('../db/seed.json');
-
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
+mongoose
+  .connect(
+    MONGODB_URI,
+    { useNewUrlParser: true }
+  )
   .then(() => mongoose.connection.db.dropDatabase())
   .then(() => {
-    return Promise.all([
-      Result.insertMany(results)
-    ]);
+    return Promise.all([Result.insertMany(results)]);
   })
   .then(results => {
     console.info(`Inserted ${results.length} results`);

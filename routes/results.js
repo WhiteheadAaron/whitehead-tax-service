@@ -2,14 +2,9 @@
 
 const express = require("express");
 const Result = require("../models/result");
-const mongoose = require("mongoose");
-
 const router = express.Router();
 
-/* ========== GET/READ ALL ITEMS ========== */
 router.get("/", (req, res, next) => {
-
-
   Result.find()
     .sort([['createdAt', 'descending']])
     .select("firstName lastName email phone taxType checked createdAt")
@@ -20,7 +15,6 @@ router.get("/", (req, res, next) => {
       next(err);
     });
 });
-
 
 router.post("/", (req, res, next) => {
   const newObj = {
@@ -63,8 +57,6 @@ router.put('/:id', (req, res, next) => {
     taxType: req.body.taxType,
     createdAt: req.body.createdAt
   }
-  console.log(newObj);
-
   return Result.findOneAndUpdate({ _id: id }, newObj, { new: true })
     .select('firstName lastName email phone taxType checked')
     .then(results => {
@@ -73,7 +65,6 @@ router.put('/:id', (req, res, next) => {
     .catch(err => {
       console.log(err);
     })
-
 })
 
 router.delete('/:id', (req, res, next) => {
@@ -88,7 +79,5 @@ router.delete('/:id', (req, res, next) => {
       next(err);
     })
 })
-
-
 
 module.exports = router;

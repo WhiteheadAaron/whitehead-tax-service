@@ -7,9 +7,10 @@ $(document).ready(function () {
 
   eventHandlers.handleClicks();
   resultsJs.handleClicks();
+
   api.getItems((items) => {
     items.forEach((item) => store.items.push(item));
     eventHandlers.render();
   });
-
+  
 });
