@@ -337,7 +337,6 @@ a {
 }
 
 .checkbox {
-    display: inline-block;
     margin-left: 20px;
 }
 
@@ -358,7 +357,7 @@ a {
     background-color: rgb(255, 221, 221);
 }
 
-.check, .name {
+.checkbox, .name {
     display: inline;
 }
 

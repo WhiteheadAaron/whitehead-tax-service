@@ -200,14 +200,14 @@ const eventHandlers = (function () {
     if (item.checked === "true") {
       html = `<div class="itemGrid itemChecked" data-item-id="${item.id}">
     <h4 class="name">${item.firstName} ${item.lastName}</h4>
-    <input class="check" type="checkbox" class="checkbox" value="checked" checked="checked">
+    <input type="checkbox" class="checkbox" value="checked" checked="checked">
     <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}, ${date}</p>
 </div>`;
     }
     if (item.checked === "false") {
       html = `<div class="itemGrid itemNotChecked" data-item-id="${item.id}">
     <h4 class="name">${item.firstName} ${item.lastName}</h4>
-    <input class="check" type="checkbox" class="checkbox" value="checked">
+    <input type="checkbox" class="checkbox" value="checked">
     <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}, ${date}</p>
 </div>`;
     }

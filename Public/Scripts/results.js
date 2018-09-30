@@ -40,6 +40,7 @@ const resultsJs = (function () {
     $("#stuff").on("click", ".checkbox", event => {
       const id = getItemIdFromElement(event.currentTarget);
       const thisItem = store.items.find(item => item.id === id);
+      console.log('hello');
 
       if (thisItem.checked === "false") {
         thisItem.checked = "true";
