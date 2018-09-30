@@ -25,18 +25,18 @@ const eventHandlers = (function () {
         </div>
         <div class="aboutQualificationCPA">
             <h3>Certified Public Account</h3>
-            <p>Some information about your CPA certification</p>
+            <p>Some information about your CPA certificationSome information about your CPA certificationSome information about your CPA certificationSome information about your CPA certificationSome information about your CPA certificationSome information about your CPA certification</p>
         </div>
         <div class="aboutQualificationCollege">
             <h3>Upper Iowa University</h3>
-            <p>Some information about your college</p>
+            <p>Some information about your collegeSome information about your CPA certificationSome information about your CPA certificationSome information about your CPA certificationSome information about your CPA certificationSome information about your CPA certificationSome information about your CPA certification</p>
         </div>
     </div>
 </div>
 <div id="contactServicesGrid">
 <h3 class="banner">Want to know more?</h3>
-<button class="servicesButton nav-button">Services</button>
-<button class="contactButton nav-button">Contact Me</button>
+<button class="servicesButton nav-button2">Services</button>
+<button class="contactButton nav-button2">Contact Me</button>
 </div>`;
     return html;
   }
@@ -49,17 +49,17 @@ const eventHandlers = (function () {
       </div>
       <div class="productsPersonal">
         <h3>Personal Tax Returns</h3>
-            <p>Some information about your personal tax returns</p>
+            <p>Some information about your personal tax returns Some information about your personal tax returns Some information about your personal tax returns Some information about your personal tax returns Some information about your personal tax returns</p>
       </div>
       <div class="productsBusiness">
         <h3>Small Business Tax Returns</h3>
-            <p>Some information about your small business tax returns</p>
+            <p>Some information about your small business tax returns Some information about your personal tax returns Some information about your personal tax returns Some information about your personal tax returns Some information about your personal tax returns Some information about your personal tax returns</p>
       </div>
       </div>
 </div>
 <div id="contactServicesGrid">
 <h3 class="banner">Want to schedule an appointment?</h3>
-<button class="contactButton2 nav-button">Contact Me</button>
+<button class="contactButton2 nav-button2">Contact Me</button>
 </div>`;
     return html;
   }
@@ -199,16 +199,16 @@ const eventHandlers = (function () {
     date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
     if (item.checked === "true") {
       html = `<div class="itemGrid itemChecked" data-item-id="${item.id}">
-    <h4>${item.firstName} ${item.lastName}</h4>
+    <h4 class="name">${item.firstName} ${item.lastName}</h4>
+    <input class="check" type="checkbox" class="checkbox" value="checked" checked="checked">
     <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}, ${date}</p>
-    <input type="checkbox" class="checkbox" value="checked" checked="checked">
 </div>`;
     }
     if (item.checked === "false") {
       html = `<div class="itemGrid itemNotChecked" data-item-id="${item.id}">
-    <h4>${item.firstName} ${item.lastName}</h4>
+    <h4 class="name">${item.firstName} ${item.lastName}</h4>
+    <input class="check" type="checkbox" class="checkbox" value="checked">
     <p class="resultsp">${item.email}, ${item.phone}, ${item.taxType}, ${date}</p>
-    <input type="checkbox" class="checkbox" value="checked">
 </div>`;
     }
     return html;

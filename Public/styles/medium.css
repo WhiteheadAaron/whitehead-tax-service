@@ -1,0 +1,21 @@
+@media only screen and (max-width: 900px) {
+  body {
+    background-color: red;
+  }
+
+  .nav-button, .curOn {
+    display: none;
+  }
+
+  .nav h1 {
+    grid-column: 2 / 6;
+  }
+
+  .phoneImg, .emailImg {
+    display: none;
+  }
+
+  .contactPhone, .contactEmail {
+    grid-row: 10 / 12;
+  }
+}

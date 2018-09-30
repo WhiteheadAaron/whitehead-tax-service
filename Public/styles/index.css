@@ -46,7 +46,7 @@ h1 {
     display: inline-block;
 }
 
-.nav-button {
+.nav-button, .nav-button2 {
     border: none;
     background-color: white;
     font-size: 20px;
@@ -84,6 +84,7 @@ h1 {
 }
 
 .aboutMeImage {
+    display: none;
     width: 100%;
     height: 100%;
     grid-column: 1 / 5;
@@ -93,12 +94,12 @@ h1 {
 .aboutHeader {
     width: 100%;
     height: 100%;
-    grid-column: 5 / 9;
+    grid-column: 3 / 7;
     grid-row: 1 / 2;
 }
 
 .aboutInfo {
-    grid-column: 5 / 9;
+    grid-column: 2 / 8;
     grid-row: 3 / 4;
     text-align: left;
     font-size: 18px;
@@ -195,7 +196,7 @@ h1 {
 }
 
 .contactGrid h4 {
-    grid-column: 1 / 9;
+    grid-column: 2 / 8;
     grid-row: 9 / 10;
 }
 
@@ -293,7 +294,7 @@ a {
 }
 
 .contactButton {
-    grid-column: 6 / 7;
+    grid-column: 5 / 8;
     grid-row: 2 / 3;
     text-decoration: underline;
 }
@@ -341,7 +342,7 @@ a {
 }
 
 .resultsp {
-    display: inline-block;
+    display: block;
 }
 
 .buttons {
@@ -356,3 +357,8 @@ a {
 .itemNotChecked {
     background-color: rgb(255, 221, 221);
 }
+
+.check, .name {
+    display: inline;
+}
+
